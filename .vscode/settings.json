@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "vector": "cpp",
+        "new": "cpp"
+    },
+
+    "C_Cpp.errorSquiggles": "Disabled",
+
+    "code-runner.executorMap": {
+        "cpp": "g++-11 $fullFileName && ./a.out "
+    }
+}
