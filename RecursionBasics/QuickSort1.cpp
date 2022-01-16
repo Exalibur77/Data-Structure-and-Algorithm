@@ -10,54 +10,27 @@ void quicksort(int arr[] , int n){
     return QuickSort(arr,0,n-1);
 
 }
+// Using end element as a pivot element
 
 int partition(int arr[] , int s , int e){
 
     int pivot = arr[e];
-    int cnt =0; 
 
+    int i = s-1;
 
-    // counting the number of elements smaller or equal than the pivot element
+    // maintaining a index i 1 before where all smaller elements are being placed in the array 
 
-    for(int i=s ; i<=e-1 ; i++){
-        if(arr[i] <= pivot){
-            cnt++;
-        }
-    }
-
-    int pivotIndex = s+cnt;
-
-    // Placing the pivot at the correct location
-    swap(arr[e],arr[pivotIndex]);
-
-    // now making sure that left part of pivot is smaller or qual to pivot and right side of pivot is greater than pivot
-
-    // does not mean in sorted manner 
-
-    int i=s;
-    int j=e;
-
-    while (i<pivotIndex and j>pivotIndex)
-    {
-        //if elements present are already smaller or equal than pivot then just i++
-        while(arr[i] <= pivot)
+    for(int j=s ; j<e ; j++){
+        if(arr[j] <= pivot){
             i++;
-
-        // if elements are already greater than just j--
-        while(arr[j] > pivot){
-            j--;
-        }    
-
-        // Now after exiting while loop if i is still smaller than pivotIndex and j is greater than pivotIndex then we have to place the value at i and j at the correct position.
-
-        if(i<pivotIndex and j>pivotIndex){
-            swap(arr[i++],arr[j--]);
+            swap(arr[j],arr[i]);
         }
-
-
     }
-    
-    return pivotIndex;
+    // placing pivot at correct index
+    swap(arr[i+1],arr[e]);
+
+
+    return i+1;
 
 
 }
