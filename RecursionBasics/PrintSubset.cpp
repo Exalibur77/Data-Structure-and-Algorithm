@@ -8,6 +8,7 @@ using namespace std;
 /*
     {a,b,c} = {a},{b},{c},{a,b},{b,c},{a,c},{a,b,c},{}  // total 2^n
 
+    // unique elements in array
 
 */
 
@@ -114,17 +115,17 @@ void PrintSubsets(int arr[] , int n){
 
 int main(){
 
-    int arr[]={1,2,3};
+    int arr[]={1,2,2,1};
 
-    int n= 3;
+    int n= 4;
 
-    printSubsets(arr,n);
+    // printSubsets(arr,n);
 
-    printSubsequence("ABC");
+    // printSubsequence("ABC");
 
     // Using recursion
 
-    // PrintSubsets(arr,n);
+    PrintSubsets(arr,n);
 
 
 

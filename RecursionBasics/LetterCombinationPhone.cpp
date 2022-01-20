@@ -4,7 +4,7 @@
 using namespace std;
 
 // Using recursion and backtracking
-void solve(string digits , string output , int index ,vector <string> &m,vector <string>&ans){
+void solve(string digits , string &output , int index ,vector <string> &m,vector <string>&ans){
         
         // base case
         if(index >= digits.size()){
@@ -31,7 +31,7 @@ vector<string> letterCombinations(string digits) {
         
         vector <string> ans;
         if(digits.size() ==0 ) return ans;
-        string output;
+        string output="";
         int index =0;
         vector <string> m= {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
         

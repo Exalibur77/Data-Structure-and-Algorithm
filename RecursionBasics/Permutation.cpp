@@ -21,9 +21,8 @@ void solve(vector<int> nums , vector<vector<int>>& ans , int index){
             solve(nums,ans,index+1);
             
             // backtrack == so that we reach our original state before performing swap again
-            
             swap(nums[j],nums[index]);
-            
+            // here backtrack can also be skipped as we are having a copy of nums in each case not a universal container in each case.
         }
         
 }
@@ -39,7 +38,7 @@ vector<vector<int>> permute(vector<int>& nums) {
 
 int main(){
 
-    vector <int> arr={2,1,4};
+    vector <int> arr={2,1,3};
 
     vector<vector<int>> ans = permute(arr);
 
