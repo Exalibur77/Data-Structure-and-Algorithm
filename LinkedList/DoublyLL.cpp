@@ -106,14 +106,13 @@ void insertAtPosition(Node* &head , int x ,int pos){
     }
 
     newNode->next = temp->next;
-
-    // To check for the last node
-    if(temp->next != NULL){
-        (temp->next)->prev = newNode;
-    }
-
     temp->next = newNode;
     newNode ->prev = temp;
+
+    // If not at last node
+    if(newNode->next != NULL){
+        newNode->next->prev = newNode;
+    }
 
 }
 
@@ -187,11 +186,11 @@ int main(){
     insertAtPosition(head,1111,4);
     print(head);
 
-    deleteNode(head,0);
-    print(head);
+    // deleteNode(head,0);
+    // print(head);
 
-    deleteNode(head,3);
-    print(head);
+    // deleteNode(head,3);
+    // print(head);
 
 
 }
