@@ -36,8 +36,13 @@ class Solution
             int b = stk.top();
             stk.pop();
             
+            // a does not know b && b also does not know a  .. both cant be celebrity
+            if(!knows(a,b,M,n) and !knows(b,a,M,n)){
+                continue;
+            }
+            
             // if a knows b ... a is not celebrity
-            if(knows(a,b,M,n)){
+            else if(knows(a,b,M,n)){
                 stk.push(b);
             }
             
@@ -47,6 +52,10 @@ class Solution
             }
             
         }
+
+        // since last two elements could also not be celeb and stack could be empty
+        if(stk.size() == 0) return -1;
+        
         
         int celeb = stk.top();
         
