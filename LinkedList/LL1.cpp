@@ -9,6 +9,9 @@ class Node{
     int data;
     Node * next; // Next is a pointer of a next node so the type is also a node.
 
+    // empty constructor is required here.
+    Node(){}
+    
     Node(int val){
         this->data = val;
         this->next = NULL;
