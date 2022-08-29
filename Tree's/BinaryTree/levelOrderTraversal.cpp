@@ -91,7 +91,7 @@ void levelOrderTraversal1(Node * &root){
     while(!q.empty()){
 
         Node * temp = q.front();
-        q.pop();
+        q.pop(); 
 
         // one level has been completed
         if(temp == NULL){
@@ -129,6 +129,47 @@ void levelOrderTraversal1(Node * &root){
 
 }
 
+vector<vector<int>> levelOrder(Node* root) {
+        
+    vector<vector<int>> ans;
+        
+    if(root == NULL) return ans;
+        
+    queue <Node *> q;
+    q.push(root);
+        
+    while(!q.empty()){
+            
+        int size = q.size();
+        vector <int> level;
+            
+        // traversing each level
+        for(int i=0 ; i<size ; i++){
+                
+            Node * temp = q.front();
+            q.pop();
+                
+            if(temp->left){
+                q.push(temp->left);
+            }
+                
+            if(temp->right){
+                q.push(temp->right);
+            }
+                
+            level.push_back(temp->data);
+                
+        }
+        ans.push_back(level);
+            
+    }
+        
+    return ans;
+        
+        
+}
+
+
 int main(){
 
     Node * root = NULL;
@@ -138,7 +179,15 @@ int main(){
     // levelOrderTraversal(root);
     // levelOrderTraversal1(root);
 
-    ReverselevelOrderTraversal(root);
+    auto ans = levelOrder(root);
+
+    for(auto &v : ans){
+        for(auto &val : v){
+            cout << val << " ";
+        }
+        cout << endl;
+    }
+
 
     return 0;
     
