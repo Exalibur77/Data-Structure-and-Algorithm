@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<stack>
 using namespace std;
 
 // creating node for the binary tree
@@ -64,6 +65,47 @@ void preOrderTraversal(Node * &root){
 
 }
 
+// Iterative
+void preOrderTraversal1(Node *&root){
+
+    stack<Node*> stk;
+
+    Node * temp = root;
+
+    while(true){
+
+        if(temp!=NULL){
+
+            cout << temp->data << " ";
+
+            stk.push(temp);
+
+            temp = temp->left;
+
+        }
+
+        else{
+
+            if(stk.empty()) break;
+
+            temp = stk.top();
+            stk.pop();
+
+            temp = temp->right;
+
+        }
+
+
+
+
+
+    }
+
+
+
+
+}
+
 int main(){
 
     Node * root = NULL;
@@ -71,6 +113,10 @@ int main(){
     root = buildTree(root);
 
     preOrderTraversal(root);
+
+    cout << endl;
+
+    preOrderTraversal1(root);
     
 
     return 0;

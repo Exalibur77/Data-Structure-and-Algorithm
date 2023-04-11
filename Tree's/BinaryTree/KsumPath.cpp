@@ -1,7 +1,7 @@
 #include<iostream>
+#include<vector>
+#include<unordered_map>
 using namespace std;
-
-// creating node for the binary tree
 
 class Node{
 
@@ -45,31 +45,58 @@ Node * buildTree(Node * root){
 
 }
 
-int sum(Node *& root){
+unordered_map <int,int> mp;
+    
+void solve(Node * root , int k , int sum , int &count){
+        
+    if(root == NULL) return ;
+        
+    sum += root->data;
+        
+    count = count + mp[sum-k];
+        
+    if(sum == k){
+        count ++;
+    }
+        
+    mp[sum]++;
+        
+    solve(root->left , k , sum , count);
+    solve(root->right , k , sum ,count);
+        
+        
+    // backtrap step since we are using a universal map
+        
+    mp[sum]--;
+        
+    
+}
 
-    if(root == NULL) return 0;
 
-    if(root->left == NULL and root->right == NULL) return root->data;
-
-    int leftSum = sum(root->left);
-    int rightSum = sum(root->right);
-
-    int ans = root->data + leftSum + rightSum;
-
-    return ans;
-
+int sumK(Node *root,int k)
+{
+        
+    int sum = 0;
+    int count = 0;
+        
+    solve(root,k,sum,count);
+        
+    return count;
+        
 }
 
 
 
 int main(){
 
+
     Node * root = NULL;
 
     root = buildTree(root);
 
-    cout << sum(root);
+    cout <<  sumK(root,3) << endl;
+
+
 
     return 0;
-    
 }

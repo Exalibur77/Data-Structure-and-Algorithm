@@ -1,7 +1,7 @@
 #include<iostream>
-using namespace std;
+#include<vector>
 
-// creating node for the binary tree
+using namespace std;
 
 class Node{
 
@@ -45,31 +45,17 @@ Node * buildTree(Node * root){
 
 }
 
-int sum(Node *& root){
-
-    if(root == NULL) return 0;
-
-    if(root->left == NULL and root->right == NULL) return root->data;
-
-    int leftSum = sum(root->left);
-    int rightSum = sum(root->right);
-
-    int ans = root->data + leftSum + rightSum;
-
-    return ans;
-
-}
-
-
-
 int main(){
 
     Node * root = NULL;
 
     root = buildTree(root);
 
-    cout << sum(root);
 
-    return 0;
-    
+
+
+
+
+
+
 }

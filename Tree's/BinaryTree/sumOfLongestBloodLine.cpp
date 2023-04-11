@@ -1,9 +1,6 @@
 #include<iostream>
-#include<stack>
 #include<vector>
 using namespace std;
-
-// creating node for the binary tree
 
 class Node{
 
@@ -47,62 +44,47 @@ Node * buildTree(Node * root){
 
 }
 
-
-
-
-void postOrderTraversal(Node * &root){
-
-    // L R N
-
-    if(root == NULL)return;
-
-
-    postOrderTraversal(root->left);
-
-    postOrderTraversal(root->right);
-
-    cout << root->data << " ";
-    
-
+void solve(Node *&root , int currSum , int len , int& maxSum , int &maxLen){
+        
+    // updating values at the end only
+     if(root == NULL){
+            
+        if(len > maxLen){
+            maxLen = len;
+            maxSum = currSum;
+        }
+            
+        else if(len == maxLen){
+            maxSum = max(maxSum,currSum);
+        }
+            
+            
+        return;
+    }
+        
+    currSum = currSum +  root->data;
+    len = len+1;
+        
+    solve(root->left , currSum , len , maxSum , maxLen);
+    solve(root->right, currSum , len , maxSum , maxLen);
+        
+        
 }
 
-void postOrderTraversal1(Node *&root){
-
-    Node *temp = root;
-
-    stack <Node*> stk;
-
-    stk.push(temp);
-
-    vector <int> ans;
-
-    while(!stk.empty()){
-
-        temp = stk.top();
-        stk.pop();
-        ans.push_back(temp->data);
-
-        if(temp->left){
-            stk.push(temp->left);
-        }
-
-        if(temp->right){
-            stk.push(temp->right);
-        }
 
 
-    }
-
-    reverse(ans.begin(),ans.end());
-
-    for(auto & val : ans){
-        cout << val << " ";
-    }
-
-
-
+int sumOfLongRootToLeafPath(Node *root)
+{  
+    int currSum= 0;
+    int maxSum = INT_MIN;
+        
+    int len = 0;
+    int maxLen = 0;
+        
+    solve(root,currSum,len,maxSum,maxLen);
+        
+    return maxSum;
 }
-
 
 
 int main(){
@@ -111,10 +93,6 @@ int main(){
 
     root = buildTree(root);
 
-    postOrderTraversal(root);
-    cout << endl;
-    postOrderTraversal1(root);
-
-    return 0;
+    cout << sumOfLongRootToLeafPath(root) << endl;
 
 }

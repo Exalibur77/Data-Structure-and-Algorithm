@@ -25,7 +25,7 @@ void Merge(int arr[] , int s , int e){
         k++;
     }
     
-    k = mid +1;
+    // k = mid +1;
 
     for (int i = 0; i < len2; i++)
     {

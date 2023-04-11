@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
 using namespace std;
 
 // creating node for the binary tree
@@ -134,8 +135,11 @@ vector <int> boundary(Node *root)
         
     // right subtree leaf nodes
     traverseLeaf(root->right, ans);
-        
-        
+    
+    // // you can also traverse the leaf node of left and right subtree simultanoeusly
+    // traverseLeaf(root,ans);
+
+
     // 3. Traverse Right
     traverseRight(root->right , ans);
         

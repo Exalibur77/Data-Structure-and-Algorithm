@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<stack>
 using namespace std;
 
 // creating node for the binary tree
@@ -64,6 +65,46 @@ void inOrderTraversal(Node * &root){
 
 }
 
+void inorderTraversal1(Node *&root){
+
+    stack <Node*> stk;
+    Node * temp = root;
+
+    while(true){
+
+        // First go left
+        if(temp!= NULL){
+
+            stk.push(temp);
+            temp = temp->left;
+
+        }
+
+        // if temp value has become null
+        else{
+
+            if(stk.empty()) break;
+
+            temp = stk.top();
+            stk.pop();
+
+            // print this value 
+            cout << temp->data << " ";
+
+            temp = temp->right;
+
+
+        }
+
+
+
+    }
+
+
+
+}
+
+
 int main(){
 
     Node * root = NULL;
@@ -71,7 +112,10 @@ int main(){
     root = buildTree(root);
 
     inOrderTraversal(root);
-    
+
+    cout << endl;
+
+    inorderTraversal1(root);    
 
     return 0;
 
