@@ -45,56 +45,80 @@ Node * buildTree(Node * root){
 
 }
 
-// Time Complexity - O(N)
-// Space Complexity - O(N)
-void solve(Node * root , int k , int target , vector <int> temp , int &ans){
+
+
+Node * solve(Node * root , int &k , int target , int &ans){
     
-    if(root == NULL) return;    
+    if(root == NULL) return NULL;
     
+    // if node is found return that node
     if(root->data == target){
-        
-        // for(auto &val : temp){
-        //     cout << val << " ";
-        // }
-        // cout << endl;
-        
-        // if ancestor exsits
-        if(temp.size() >= k){
-            ans = temp[temp.size()-k];
-        }
-        
-        else ans = -1;
-        
-        return;
+        return root;
     }
     
-    temp.push_back(root->data);
     
-    solve(root->left , k , target , temp , ans);
+    Node * leftAns = solve(root->left , k , target , ans);
+    Node * rightAns = solve(root->right , k , target , ans);
     
-    solve(root->right , k , target , temp , ans);
+    
+    if(leftAns == NULL and rightAns == NULL) return NULL;
+    
+    if(leftAns == NULL and rightAns != NULL){
+        
+        k--;
+        
+        // we have reached the kth ancestor
+        if(k == 0){
+            ans = root->data;
+        }
+        
+        return rightAns;
+    }
+    
+    if(leftAns != NULL and rightAns == NULL){
+        
+        k--;
+        
+        // we have reached the kth ancestor
+        if( k == 0){
+            ans = root->data;
+        }
+        
+        return leftAns;
+        
+    }
+    
+    return NULL;
+    
     
     
 }
 
 
-int kthAncestor(Node *root, int k, int node){
+
+
+
+
+// your task is to complete this function
+int kthAncestor(Node *root, int k, int node)
+{
     
-    vector <int> temp;
     int ans = -1;
     
-    solve(root ,k ,node, temp , ans);
+    Node * res = solve(root , k , node , ans);
     
+    // cout << res->data << endl;
     
     return ans;
     
+    
+    
 }
-
 
 
 int main(){
 
-    Node * root = NULL;
+Node * root = NULL;
 
     root = buildTree(root);
 
@@ -105,5 +129,7 @@ int main(){
     int ans = kthAncestor(root,k,target);
 
     cout << ans << endl;
+
+    return 0;
 
 }
