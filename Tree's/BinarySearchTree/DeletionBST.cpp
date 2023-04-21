@@ -187,9 +187,9 @@ int main(){
 
     cout << endl;
 
-    deleteNode(root,target);
+    Node * newNode = deleteNode(root,target);
 
-    inorder(root);
+    inorder(newNode);
 
 
 }

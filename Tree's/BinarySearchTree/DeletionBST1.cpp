@@ -150,7 +150,7 @@ Node * helper(Node * root){
     
     Node * rightChild = root->right;
     
-    // finding the successor
+    // finding the predecessor
     Node * leftsRightMost = find(root->left);
     
 
@@ -172,6 +172,17 @@ void inorder(Node * root){
 
 }
 
+void preorder(Node * root){
+
+    if(root == NULL) return;
+
+    cout << root->data << " ";
+
+    preorder(root->left);
+    preorder(root->right);
+
+}
+
 
 int main(){
 
@@ -185,12 +196,16 @@ int main(){
     cin >> target;
 
     inorder(root);
+    cout << endl;
+    preorder(root);
 
     cout << endl;
 
-    deleteNode(root,target);
+    Node* newNode = deleteNode(root,target);
 
-    inorder(root);
+    preorder(newNode);
+    cout << endl;
+    inorder(newNode);
 
 
 }

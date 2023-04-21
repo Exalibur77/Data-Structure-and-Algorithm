@@ -72,8 +72,8 @@ void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
     if(root == NULL) return;
     
     if(root->data == key){
-        
-        
+         
+
         // finding predecssor 
         
         if(root->left){
@@ -87,7 +87,6 @@ void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
             pre = temp;
             
         }
-        
         
         
         // finding successor
@@ -172,8 +171,6 @@ void findPreSuc1(Node* root, Node*& pre, Node*& suc, int key)
     }
     
     
-
-
 }
 
 int main(){
