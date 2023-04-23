@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<stack>
 
 using namespace std;
 
@@ -96,7 +97,7 @@ void flatten1(Node * root) {
 }
 
 // TC- O(N) and SC -O(N)
-void flatten2(TreeNode* root) {
+void flatten2(Node* root) {
         
         // Using stack
        
@@ -136,20 +137,20 @@ void flatten2(TreeNode* root) {
 
 
 
-Node * prev = NULL;
+Node * p = NULL;
     
-void flatten3(TreeNode *root)
+void flatten3(Node *root)
 {
         
         if(root == NULL) return;
         
-        flatten(root->right);
-        flatten(root->left );
+        flatten3(root->right);
+        flatten3(root->left );
         
-        root->right = prev;
+        root->right = p;
         root->left = NULL;
         
-        prev = root;
+        p = root;
         
     
 }
@@ -162,7 +163,7 @@ int main(){
     root= buildTree(root);
 
 
-    flatten1(root);
+    flatten3(root);
     inorder(root);
 
 

@@ -59,7 +59,7 @@ void inorder(Node * root , vector<int> &ans){
 
 
 
-
+// T.C - O(N) and S.C -O(N)
 
 bool isValidBST(Node* root) {
         
