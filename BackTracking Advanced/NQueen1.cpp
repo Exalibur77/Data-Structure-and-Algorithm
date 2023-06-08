@@ -2,6 +2,9 @@
 #include<vector>
 using namespace std; 
 
+// T.C - O(N! * N)
+// S.C - O(N^2)
+
 void addAns(vector < vector <int> > &grid , vector < vector<int> > &ans , int n){
 
 	vector <int> temp;

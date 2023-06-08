@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<vector>
 using namespace std;
 
 // T.C - O(N) for all insertion , deletion and searching
@@ -154,38 +155,38 @@ class Trie{
 
     }
 
-    void printUtil(TrieNode * root , string str){
+    void printUtil(TrieNode * curr , string temp){
 
-        // base case
-        if(root->isTerminal == true){
-            
-
-            cout << str << endl;
-            return;
+        if(curr->isTerminal){
+            cout << temp << endl;
         }
 
-        for(int i=0 ; i<26 ; i++){
+        for(char ch='a' ; ch <= 'z' ; ch++){
 
-            // i th index wala exsits krta hai 
-            if(root->children[i]){
-                str += ('a' + i);
+            TrieNode * next = curr->children[ch-'a'];
 
-                printUtil(root->children[i] , str);
+            if(next != NULL){
+
+                temp.push_back(ch);
+
+                printUtil(next , temp);
+
+                temp.pop_back();
+
             }
 
+
         }
 
-    }
 
+    }
 
     void printAll(){
 
-        string ans;
-        printUtil(root , ans);
+        string temp = "";
+        printUtil(root , temp);
 
     }
-
-
 
 };
 
@@ -197,6 +198,8 @@ int main(){
     t.insertWord("tom");
     t.insertWord("time");
     t.insertWord("raj");
+    t.insertWord("aaraam");
+
 
     // cout << t.searchWord("abcd") << endl;
     // cout << t.searchWord("t") << endl;
@@ -211,6 +214,8 @@ int main(){
 
     // t.deleteWord("tom");
     // cout << t.searchWord("tom") << endl;
+
+    vector <string> ans;
 
     t.printAll();
 
