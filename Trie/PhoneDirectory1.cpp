@@ -18,8 +18,6 @@ vector<vector<string>> phoneDirectory(vector<string>&contactList, string &queryS
 
         prefix.push_back(queryStr[i]);
 
-        // cout << prefix << endl;
-
         for(auto & str : contactList){
             
             if(str.find(prefix) == 0){
@@ -28,7 +26,7 @@ vector<vector<string>> phoneDirectory(vector<string>&contactList, string &queryS
             
         }
 
-        // if(temp.size() == 0) ans.push_back({"No suggestions found"});
+        if(temp.size() == 0) ans.push_back({"0"});
 
         ans.push_back(temp);
         
@@ -43,8 +41,6 @@ int main(){
 
     int n;
     cin >> n;
-
-    // cin.ignore();
 
     vector <string> arr;
 
