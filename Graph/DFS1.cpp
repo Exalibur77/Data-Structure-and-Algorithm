@@ -4,6 +4,9 @@ using namespace std;
 
 // DFS for a fully connected graph
 
+// T.C - O(N) + O(M)
+// S.C - O(N)
+
 void dfs(int V , vector<int> adj[] , vector<int> &ans , int startingNode , vector <int> &visited){
     
         ans.push_back(startingNode);
