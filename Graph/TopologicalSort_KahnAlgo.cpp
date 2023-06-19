@@ -1,0 +1,118 @@
+//{ Driver Code Starts
+#include <iostream>
+#include <stack>
+#include <vector>
+using namespace std;
+
+// } Driver Code Ends
+class Solution
+{
+	public:
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    
+	    // First create a in degree vector
+	    vector <int> indegree(V,0);
+	    
+	    for(int i=0 ; i<V ; i++){
+	        
+	        for(auto &it : adj[i]){
+	            
+	            indegree[it]++;
+	            
+	        }
+	
+	    }
+	    
+	    
+	    // Now add all the nodes having indegree as 0 , ie the start node as it is DAG , it is impossible that no node has a indegree as 0
+	    
+	    queue <int> q;
+	    
+	    for(int i=0 ; i<V ; i++){
+	        if(indegree[i] == 0)
+	            q.push(i);  
+	    }
+	    
+	    vector <int> ans;
+	    
+	    while(!q.empty()){
+	        
+	        int node = q.front();
+	        q.pop();
+	        ans.push_back(node);
+	        
+	        // Now traverse among all my neighbours which are intended to come after me
+	        
+	        for(auto &it : adj[node]){
+	            
+	            // first remove the dependency on children since its parent node is already being added previously
+	            indegree[it]--;
+	            
+	            // If by removing the dependecy , no such dependecy is left bu any other node on this it
+	            if(indegree[it] == 0){
+	                q.push(it); //. means this node is not free as all its parents are already being added to its left
+	            }
+	            
+	        }
+	        
+	        
+	    }
+	    
+	    return ans;
+	    
+	    
+	    
+	}
+};
+
+//{ Driver Code Starts.
+
+/*  Function to check if elements returned by user
+*   contains the elements in topological sorted form
+*   V: number of vertices
+*   *res: array containing elements in topological sorted form
+*   adj[]: graph input
+*/
+int check(int V, vector <int> &res, vector<int> adj[]) {
+    
+    if(V!=res.size())
+    return 0;
+    
+    vector<int> map(V, -1);
+    for (int i = 0; i < V; i++) {
+        map[res[i]] = i;
+    }
+    for (int i = 0; i < V; i++) {
+        for (int v : adj[i]) {
+            if (map[i] > map[v]) return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int N, E;
+        cin >> E >> N;
+        int u, v;
+
+        vector<int> adj[N];
+
+        for (int i = 0; i < E; i++) {
+            cin >> u >> v;
+            adj[u].push_back(v);
+        }
+        
+        Solution obj;
+        vector <int> res = obj.topoSort(N, adj);
+
+        cout << check(N, res, adj) << endl;
+    }
+    
+    return 0;
+}
+// } Driver Code Ends
