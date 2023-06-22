@@ -21,10 +21,12 @@ public:
 	           
 	           bool success = checkComponent(neighbour , V , adj , color , !c);
 	           
+               // As soon as single problem is being identified just return false
 	           if(success == false) return false;
 	           
 	       }
 	       
+           // Condition for identifying the problem
 	       else if(color[neighbour] == color[start]){
 	           return false;
 	       }
