@@ -2,6 +2,9 @@
 #include<vector>
 using namespace std;
 
+// Time Complexity - O(4*Alpha) ~ O(1)
+// Space Complexity - O(N/V)
+
 class DisjointSet{
 
     vector <int> parent , size;

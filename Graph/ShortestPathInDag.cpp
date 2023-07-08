@@ -8,7 +8,6 @@ class Solution {
   public:
      vector<int> shortestPath(int N,int M, vector<vector<int>>& edges){
         
-        
         vector <pair<int,int>> adj[N];
         
         // First step is to create adjacency list for the given fraph

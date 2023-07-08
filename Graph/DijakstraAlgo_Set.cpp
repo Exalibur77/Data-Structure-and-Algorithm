@@ -33,8 +33,7 @@ class Solution
             int node = itr->second;
             
             st.erase(itr);
-            
-            
+        
             // Moving for adjacent nodes
             
             for(auto &it : adj[node]){
