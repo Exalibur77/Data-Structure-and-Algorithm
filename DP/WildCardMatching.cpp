@@ -121,7 +121,7 @@ bool wildcardMatchingSpaceOptimised(string text, string pattern) {
     int n = pattern.size();
     int m = text.size();
 
-    // vector <vector<int>> dp(n+1 , vector<int>(m+1,-1));
+
     vector <int> prev(m+1 , -1);
 
     prev[0] = true;
@@ -138,7 +138,7 @@ bool wildcardMatchingSpaceOptimised(string text, string pattern) {
     for(int i=1 ; i<= n ; i++){
 
         vector <int> curr(m+1 , -1);
-
+        
         curr[0] = isAllStar(pattern,i);
 
         for(int j=1 ; j<= m ; j++){
